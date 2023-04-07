@@ -1,0 +1,506 @@
+@import "hide-scrollbar.css";
+
+* :not(canvas){
+    box-sizing: border-box;
+    cursor: url("../res/normal.cur"), default;
+    transition: .3s;
+}
+
+a {
+    cursor: url("../res/link.cur"), pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+input{
+    cursor: url("../res/link.cur"), pointer;
+}
+
+p {
+    margin: 0;
+}
+
+/* svg 默认颜色 */
+svg {
+    fill: #777777;
+    vertical-align: middle;
+}
+
+ul,ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cur_pointer {
+    cursor: url("../res/link.cur"), pointer;
+}
+
+/* 强制其子元素设置pointer */
+.cur_pointer * {
+    cursor: url("../res/link.cur"), pointer;
+}
+
+/* Body占用全屏设置 */
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 14px;
+    color: #777777;
+    overflow-x: auto;
+}
+
+#container {
+    margin: auto;
+
+    box-shadow: 0 0 40px #909090;
+    overflow: hidden;
+}
+
+#nav-bar {
+    position: fixed;
+    height: 60px;
+    top: 0;
+    padding: 0;
+    z-index: 1;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+#search-input {
+    border: none;
+    border-radius: 12px 0 0 12px;
+    outline-color: rgb(162, 234, 227);
+    background-color: white;
+    height:24px;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    text-indent: 1em;
+    box-shadow: -1px 0 2px rgba(0,0,0,.05);
+}
+
+#search-button {
+    border: none;
+    border-radius: 0 12px 12px 0;
+    background-color: white;
+    height:24px;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    box-shadow: 1px 0 2px rgba(0,0,0,.05);
+}
+
+.search-bar svg {
+    position: relative;
+    left: -32px;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    cursor: url("../res/link.cur"), pointer;
+}
+
+#loading-ani {
+    padding-bottom: 10px;
+}
+
+#loading-ani div{
+    display: inline-block;
+    margin: 0;
+    width: 10px;
+    height: 6px;
+    background-color: #cbac4d;
+}
+
+@keyframes loading-ani{
+    0%{}
+    20% {
+        transform: scaleY(7);
+        background-color: #00e5e5;
+    }
+    40%{
+        transform: scaleY(1);
+        background-color: #cbac4d;
+    }
+    100%{}
+}
+
+.hover-to-gray:hover{
+    background-color: rgba(0,0,0,.05);
+}
+
+.caret {
+    display: inline-block;
+    border-width: 5px 5px 0 5px;
+    border-color: #777777 transparent;
+    border-style: solid;
+    vertical-align: middle;
+    padding: 0;
+}
+
+#login {
+    position: absolute;
+    width: 280px;
+    right: 0;
+    top: 100%;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.login-top *{
+    cursor: url("../res/link.cur"), pointer;
+}
+
+.login-top > span{
+    display: inline-block;
+    padding: 8px 4px 0 8px;
+    height: 40px;
+    text-align: center;
+}
+
+.login-top span:first-child{
+    margin-left: 20px;
+}
+
+.login-top-span-selected{
+    background-color: rgba(0,0,0,0.1);
+    border-style: none;
+    border-bottom: #448bff 3px solid;
+
+}
+
+.login-input {
+    border-radius: 4px;
+    border: #edeff2 1px solid;
+    height: 30px;
+    width: 100%;
+    text-indent: 1em;
+    outline-width: 2px;
+    outline-color: #448bff;
+}
+
+.input-button {
+    height: 30px;
+    background-color: #448bff;
+    border-radius: 15px;
+    width: 100%;
+    border: none;
+    color: #f9f9f9;
+}
+
+#aside-left {
+    position: fixed;
+    width: 240px;
+    bottom: 0;
+    top: 61px;
+    z-index: 1;
+    background-color: white;
+}
+
+@keyframes disappear {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes appear {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+#aside-left nav {
+    overflow: scroll;
+    position: absolute;
+    left: 10px;
+    top: 190px;
+    right: 10px;
+    bottom: 0;
+}
+
+.aside-left-title {
+    display: block;
+    margin: 15px 0 10px;
+    font-size: 12px;
+}
+
+.aside-left-nav-category {
+    margin-left: 4px;
+}
+
+.aside-left-nav-category div {
+    padding: 8px 10px;
+    transition: .3s;
+}
+
+.aside-left-nav-category div:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+#container > main {
+    position: relative;
+    margin: 61px 0 0 242px;
+    background-color: #f9f9f9;
+}
+
+#content {
+    overflow: hidden;
+    margin-right: 180px;
+}
+
+#aside-right {
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.aside-right-nav {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.aside-right-nav li {
+    display: inline-block;
+    flex: 1;
+}
+
+.aside-right-nav li div{
+    width: 40px;
+    height: 56px;
+    padding: 20px 0;
+    margin: auto;
+}
+
+.aside-right-nav li svg{
+    width: 100%;
+}
+
+.nav-slider-bar {
+    display: block;
+    width: 11.1111%;
+    height: 2px;
+    background-color: #448bff;
+    margin: 0 11.1111%;
+    transition: .3s ease-in-out;
+}
+
+#aside-right main{
+    padding: 0 10px;
+}
+
+#aside-right main section{
+    padding: 10px;
+}
+
+#aside-right main h5{
+    margin: 0 0 8px 0;
+}
+
+.hot-blog-profile {
+    padding: 2px;
+    margin-right: 6px;
+    width: 36px;
+    height: 36px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.05);
+    border-radius: 6px;
+    background-color: white;
+}
+
+.aside-right-blog-info {
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 0 3px rgba(0,0,0,.05);
+}
+
+.aside-right-blog-info-item {
+    display: flex;
+    padding: 4px 10px;
+    font-size: 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aside-right-blog-info-item span{
+    color: white;
+    border-radius: 10px;
+    padding: 1px 7px;
+    background-color: #3f74ce;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+#brief {
+    height: 160px;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 15px;
+    font-family: 楷体!important;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    box-shadow: 0 1px 4px 1px #909090;
+}
+
+#brief > p{
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 14px;
+}
+
+#carousel {
+    position: relative;
+    height: 300px;
+    margin: 0 20px 10px 20px;
+    border-radius: 4px;
+    background-color: chartreuse;
+    overflow: hidden;
+}
+
+#carousel-indicator {
+    position: absolute;
+    bottom: 20%;
+    list-style: none;
+    width: 80px;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#carousel-indicator li {
+    display: block;
+    width: 14px;
+    height: 6px;
+
+    border-radius: 4px;
+    background-color: rgba(208, 208, 208, 0.81);
+    cursor: url("../res/link.cur"), pointer;
+    transition: all .3s ease;
+}
+
+.carousel-item-active {
+    width: 24px!important;
+}
+
+#blog-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-item {
+    margin: 10px 20px 10px 20px;
+    height: 400px;
+    border-radius: 6px;
+    transition: .3s;
+    overflow: hidden;
+    background-color: white;
+}
+
+.blog-item:hover {
+    margin-top: 4px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 12px #909090;
+}
+
+.blog-cover {
+    height: 56%;
+    overflow: hidden;
+}
+
+.blog-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    transition: .6s ease-in-out;
+}
+
+.blog-cover img:hover {
+    transform: scale(1.1);
+}
+
+.blog-title {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 24%;
+    overflow: hidden;
+}
+
+.blog-info {
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 13px;
+}
+
+.blog-info > div {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.blog-info svg {
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.blog-info span {
+    vertical-align: middle;
+}
+
+.page-index {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.page-index ol {
+    list-style: none;
+    padding: 0;
+}
+
+.page-index ol li {
+    display: inline-block;
+}
+
+.page-index ol li a{
+    display: inline-block;
+    text-decoration: none;
+    color: initial;
+    font-size: 12px;
+    padding: 6px 12px;
+    background-color: #ffffff;
+}
+
+.page-index ol li a:hover{
+    background-color: #eeeeee;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 0  10px;
+
+    color: rgba(94, 94, 94, 0.8);
+    font-size: 12px;
+    background-color: #edf1f2;
+}
+
+footer > p{
+    display: block;
+}

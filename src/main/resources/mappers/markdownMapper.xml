@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.byrd.coursedesign.Dao.MarkdownDao">
+    <select id="getMarkdown" resultType="com.byrd.coursedesign.Entity.
+">
+        select * from "markdown"
+    </select>
+
+    <select id="getMarkdownById" resultType="com.byrd.coursedesign.Entity.Markdown">
+        select * from "markdown" where "id" = #{id}
+    </select>
+
+    <insert id="insertMarkdown" parameterType="com.byrd.coursedesign.Entity.Markdown">
+        insert into "markdown" values(#{id},#{owner},#{name},#{date},#{tag},#{content})
+        <selectKey keyProperty="id" order="BEFORE" resultType="String">
+            select sys_guid() as id from DUAL
+        </selectKey>
+    </insert>
+
+    <update id="updateMarkdown" parameterType="com.byrd.coursedesign.Entity.Markdown">
+        update "markdown" set "date"=#{date},content=#{content} where "id"=#{id}
+
+    </update>
+
+    <delete id="removeMarkdown" parameterType="com.byrd.coursedesign.Entity.Markdown">
+        delete from "markdown" where "id" = #{id}
+    </delete>
+
+</mapper>
